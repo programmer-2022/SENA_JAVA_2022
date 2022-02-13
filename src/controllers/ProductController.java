@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import models.dao.ProductoDAO;
 import models.interfaces.ICrud;
@@ -14,8 +15,8 @@ public class ProductController implements ICrud<ProductoVO>{
     }
 
     @Override
-    public boolean create(ProductoVO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(ProductoVO producto) {
+        return dao.create(producto);
     }
 
     @Override
@@ -37,4 +38,8 @@ public class ProductController implements ICrud<ProductoVO>{
     public ProductoVO read(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }    
+    
+    public HashMap<String, Integer> cargarComboCategorias() {
+        return dao.cargarComboCategorias();
+    }
 }

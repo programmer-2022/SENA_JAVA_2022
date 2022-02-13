@@ -51,7 +51,7 @@ public class Home extends javax.swing.JFrame {
     private void closeApp() {
         int dialogResult = JOptionPane.showConfirmDialog (
                 null, 
-                "¿Are you sure to exit the application?",
+                "¿Está a punto de cerrar esta sesión, desea continuar?",
                 "Warning",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
@@ -183,7 +183,7 @@ public class Home extends javax.swing.JFrame {
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(204, 204, 204));
-        btnSalir.setText("Salir");
+        btnSalir.setText("Cerrar sesión");
         btnSalir.setContentAreaFilled(false);
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +349,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        this.closeApp();
+        System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

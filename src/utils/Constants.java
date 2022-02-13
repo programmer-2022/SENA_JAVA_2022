@@ -56,10 +56,21 @@ public class Constants {
     public static final String USER_PASS = "UsuClave";
     public static final String USER_ROL_ID = "TblRoles_IdRol";
     
+    //tabla categorias
+    public static final String CATEGORIA_ID = "CategoriaID";
+    public static final String CATEGORIA_NAME = "CatNombre";
+    
+    //tabla productos
+    public static final String PRODUCT_ID = "ProductoID";
+    public static final String PRODUCT_CODE = "ProCodigo";
+    public static final String PRODUCT_NAME = "ProNombre";
+    public static final String PRODUCT_SERIAL = "ProSerial";
+    public static final String PRODUCT_ESTADO = "ProEstado";
+    public static final String PRODUCT_CATEGORIA_ID = "TblCategorias_CategoriaID";
+    
     public static final String PATH_SERIAL_EMPLEADO = System.getProperty("user.dir").concat("\\output\\empleado.dat");
     public static final String PATH_SERIAL_TODOS_EMPLEADOS = System.getProperty("user.dir").concat("\\output\\empleados.dat");
     
     //Credenciales permisos usuarios
-    public static final String PATH_CREDENTIALS = System.getProperty("user.dir").concat("\\output\\credentials.dat");
-    
+    public static final String PATH_CREDENTIALS = System.getProperty("user.dir").concat("\\output\\credentials.dat");    
 }
