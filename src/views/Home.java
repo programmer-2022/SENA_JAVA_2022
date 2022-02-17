@@ -20,7 +20,6 @@ public class Home extends javax.swing.JFrame {
     private PnlProductos pnlProductos;
     private PnlProveedores pnlProveedores;
     private PnlConfiguracion pnlConfiguracion;
-    private PnlCategorias pnlCategorias; 
     
     private Permissions permissions;
     
@@ -72,7 +71,6 @@ public class Home extends javax.swing.JFrame {
         btnHome = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnUsuarios = new javax.swing.JButton();
-        btnCategorias = new javax.swing.JButton();
         btnEntradas = new javax.swing.JButton();
         btnSalidas = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
@@ -123,17 +121,6 @@ public class Home extends javax.swing.JFrame {
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
-            }
-        });
-
-        btnCategorias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnCategorias.setForeground(new java.awt.Color(204, 204, 204));
-        btnCategorias.setText("Categorías");
-        btnCategorias.setContentAreaFilled(false);
-        btnCategorias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCategoriasActionPerformed(evt);
             }
         });
 
@@ -227,7 +214,6 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,8 +234,6 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -323,11 +307,6 @@ public class Home extends javax.swing.JFrame {
         pnlProductos = new PnlProductos();
         this.loadPanel(pnlProductos);
     }//GEN-LAST:event_btnProductosActionPerformed
-
-    private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
-        pnlCategorias = new PnlCategorias();
-        this.loadPanel(pnlCategorias);
-    }//GEN-LAST:event_btnCategoriasActionPerformed
 
     private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
         pnlEntradas = new PnlEntradas();
@@ -405,7 +384,6 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCategorias;
     private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnEntradas;

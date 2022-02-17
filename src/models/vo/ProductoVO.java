@@ -6,7 +6,7 @@ public class ProductoVO {
     private String code;
     private String name;
     private String serial;
-    private Byte status;
+    private String status;
     private CategoriaVO categoria;
 
     public ProductoVO() { }
@@ -43,11 +43,11 @@ public class ProductoVO {
         this.serial = serial;
     }
 
-    public Byte getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

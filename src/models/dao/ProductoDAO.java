@@ -24,7 +24,7 @@ public class ProductoDAO implements ICrud<ProductoVO> {
             ps.setString(1, producto.getCode());
             ps.setString(2, producto.getName());
             ps.setString(3, producto.getSerial());
-            ps.setByte(4, producto.getStatus());
+            ps.setString(4, producto.getStatus());
             ps.setInt(5, producto.getCategoria().getId());
 
             if(ps.executeUpdate() > 0) return true;
@@ -41,7 +41,34 @@ public class ProductoDAO implements ICrud<ProductoVO> {
 
     @Override
     public LinkedList<ProductoVO> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        xcon = MySQLConnection.getInstance();
+        LinkedList<ProductoVO> listaProductos = new LinkedList<>();
+                
+        try {
+            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_listar_productos}");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                ProductoVO producto = new ProductoVO();
+                CategoriaVO categoria = new CategoriaVO();
+                producto.setId(rs.getInt(Constants.PRODUCT_ID));
+                producto.setName(rs.getString(Constants.PRODUCT_NAME));
+                producto.setCode(rs.getString(Constants.PRODUCT_CODE));
+                producto.setSerial(rs.getString(Constants.PRODUCT_SERIAL));
+                producto.setStatus(rs.getString(Constants.PRODUCT_ESTADO));
+                
+                categoria.setId(rs.getInt(Constants.CATEGORIA_ID));
+                categoria.setName(rs.getString(Constants.CATEGORIA_NAME));
+                producto.setCategoria(categoria);
+                listaProductos.add(producto);
+            }
+        } catch (SQLException e) {
+            Messages.msgError(Constants.ERROR_SERVER);
+        } catch (Exception e) {
+            Messages.msgError(Constants.ERROR_SYSTEM);            
+        } finally {
+            xcon.close_connection();
+        }
+        return listaProductos;
     }
 
     @Override

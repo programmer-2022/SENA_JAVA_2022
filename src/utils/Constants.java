@@ -68,6 +68,14 @@ public class Constants {
     public static final String PRODUCT_ESTADO = "ProEstado";
     public static final String PRODUCT_CATEGORIA_ID = "TblCategorias_CategoriaID";
     
+    //tabla proveedores
+    public static final String PROVEEDOR_ID = "ProveedorID";
+    public static final String PROVEEDOR_NIT = "ProNIT";
+    public static final String PROVEEDOR_NOMBRE = "ProNombre";
+    public static final String PROVEEDOR_TELEFONO = "ProTelefono";
+    public static final String PROVEEDOR_DIRECCION = "ProDireccion";
+    public static final String PROVEEDOR_EMAIL = "ProEmail";
+    
     public static final String PATH_SERIAL_EMPLEADO = System.getProperty("user.dir").concat("\\output\\empleado.dat");
     public static final String PATH_SERIAL_TODOS_EMPLEADOS = System.getProperty("user.dir").concat("\\output\\empleados.dat");
     
