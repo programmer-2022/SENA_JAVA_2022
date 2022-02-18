@@ -59,6 +59,32 @@ public class ProveedorDAO implements ICrud<ProveedorVO>{
     @Override
     public ProveedorVO read(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }   
+    
+    public ProveedorVO buscarProveedor(String nit) {
+        xcon = MySQLConnection.getInstance();
+        ProveedorVO proveedor = new ProveedorVO();
+        
+        try {
+            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_buscar_proveedor_nit(?)}");
+            ps.setString(1, nit);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                proveedor.setId(rs.getInt(Constants.PROVEEDOR_ID));
+                proveedor.setNit(rs.getString(Constants.PROVEEDOR_NIT));
+                proveedor.setNombre(rs.getString(Constants.PROVEEDOR_NOMBRE));
+                proveedor.setTelefono(rs.getString(Constants.PROVEEDOR_TELEFONO));
+                proveedor.setDireccion(rs.getString(Constants.PROVEEDOR_DIRECCION));
+                proveedor.setEmail(rs.getString(Constants.PROVEEDOR_EMAIL));
+            }
+        } catch (SQLException e) {
+            Messages.msgError(Constants.ERROR_SERVER);
+        } catch (Exception e) {
+            Messages.msgError(Constants.ERROR_SYSTEM);            
+        } finally {
+            xcon.close_connection();
+        }
+        return proveedor;
     }    
     
     public HashMap<String, Integer> cargarComboProveedores() {

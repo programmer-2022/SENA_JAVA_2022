@@ -1,20 +1,27 @@
 package views;
 
+import controllers.DetalleProductoController;
 import controllers.ProductController;
 import controllers.ProveedorController;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.vo.CategoriaVO;
+import models.vo.DetalleProductoVO;
 import models.vo.ProductoVO;
+import models.vo.ProveedorVO;
 import utils.Constants;
 import utils.Messages;
+import utils.MyDate;
 
 public class PnlProductos extends javax.swing.JPanel {
 
     private final ProductController productController;
     private static LinkedList<ProductoVO> listaProductos;
     private final ProveedorController proveedorController;
+    private final DetalleProductoController detalleProductoController;
     
     private int id;
     private String code;
@@ -23,6 +30,10 @@ public class PnlProductos extends javax.swing.JPanel {
     private String status;
     private String categoria;
     
+    private String proveedor;
+    private String cantidad;
+    private String fecha;
+    
     private HashMap<String, Integer> listaCategorias = null;
     private HashMap<String, Integer> listaProveedores = null;
     
@@ -30,6 +41,7 @@ public class PnlProductos extends javax.swing.JPanel {
         initComponents();
         productController = new ProductController();
         proveedorController = new ProveedorController();
+        detalleProductoController = new DetalleProductoController();
         txtCategoriaID.setEnabled(false);
         cargarComboCategorias();
         cargarComboProveedores();
@@ -54,6 +66,21 @@ public class PnlProductos extends javax.swing.JPanel {
         return product;    
     }
     
+    private ProveedorVO getProveedorObj() {
+        ProveedorVO _proveedor = new ProveedorVO();
+        _proveedor.setId(Integer.parseInt(txtProveedorID.getText().trim()));
+        return _proveedor;
+    }
+    
+    private DetalleProductoVO getDetalleObj(ProductoVO _producto, ProveedorVO _proveedor) {
+        DetalleProductoVO detalle = new DetalleProductoVO();
+        detalle.setCantidad(Integer.parseInt(getCantidad()));
+        detalle.setFecha(Date.valueOf(getFecha()));
+        detalle.setProveedor(_proveedor);
+        detalle.setProducto(_producto);
+        return detalle;
+    }
+    
     private void create() {
         if(isEmpty()) {
             Messages.msgError(Constants.REQUIRED);
@@ -68,20 +95,19 @@ public class PnlProductos extends javax.swing.JPanel {
         }
         
         ProductoVO newProduct = getProductObj();
-        
-        if(productController.create(newProduct)) {
-            Messages.msgSuccess(Constants.OK_INSERT);
-            fillDataTable();
-        } else {
-            Messages.msgError(Constants.ERROR_INSERT);
-        }                
+        ProveedorVO newProveedor = getProveedorObj();
+        DetalleProductoVO detalle = getDetalleObj(newProduct, newProveedor);
+                
+        productController.crear(detalle);
+        fillDataTable();
         clearFields();
         resetVariables();
     }
     
     private boolean isEmpty() {
         return (getCode().equals("") || getNombre().equals("") || getSerial().equals("") 
-                || getStatus().equals("") || getCategoria().equals(""));
+                || getStatus().equals("") || getCategoria().equals("") || getCantidad().equals("")
+                || getProveedor().equals("") || getFecha().equals(""));
     }
     
     private void clearFields() {
@@ -89,6 +115,8 @@ public class PnlProductos extends javax.swing.JPanel {
         txtNombre.setText("");
         txtSerial.setText("");
         txtEstadoID.setText("");
+        txtCantidad.setText("");
+        ((JTextField)txtFecha.getDateEditor().getUiComponent()).setText("");
     }
     
     private void resetVariables() {
@@ -97,6 +125,9 @@ public class PnlProductos extends javax.swing.JPanel {
         setSerial("");
         setStatus("");
         setCategoria("");
+        setCantidad("");
+        setFecha("");
+        setProveedor("");
     }
     
     private void readFields() {
@@ -105,6 +136,9 @@ public class PnlProductos extends javax.swing.JPanel {
         setSerial(txtSerial.getText().trim());
         setStatus(cbxEstado.getSelectedItem().toString());
         setCategoria(txtCategoriaID.getText().trim());
+        setProveedor(cbxProveedores.getSelectedItem().toString());
+        setCantidad(txtCantidad.getText().trim());
+        setFecha(MyDate.getDate(txtFecha));        
     }    
     
     private void cargarComboCategorias() {
@@ -149,6 +183,11 @@ public class PnlProductos extends javax.swing.JPanel {
         }               
     }
    
+    
+    private void buscar() {
+        
+    }
+    
     public int getId() {
         return id;
     }
@@ -196,6 +235,30 @@ public class PnlProductos extends javax.swing.JPanel {
     public void setStatus(String status) {
         this.status = status;
     }    
+    
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -321,6 +384,11 @@ public class PnlProductos extends javax.swing.JPanel {
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Buscar por Codigo:");
@@ -344,6 +412,9 @@ public class PnlProductos extends javax.swing.JPanel {
                 cbxProveedoresActionPerformed(evt);
             }
         });
+
+        txtFecha.setDateFormatString("yyyy/MM/d");
+        txtFecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Seleccione Proveedor");
@@ -471,6 +542,10 @@ public class PnlProductos extends javax.swing.JPanel {
     private void cbxProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProveedoresActionPerformed
         txtProveedorID.setText(listaProveedores.get(cbxProveedores.getSelectedItem().toString()).toString());
     }//GEN-LAST:event_cbxProveedoresActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        buscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

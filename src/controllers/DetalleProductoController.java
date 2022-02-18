@@ -1,31 +1,30 @@
 package controllers;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import models.dao.ProveedorDAO;
+import models.dao.DetalleProductoDAO;
 import models.interfaces.ICrud;
-import models.vo.ProveedorVO;
+import models.vo.DetalleProductoVO;
 
-public class ProveedorController implements ICrud<ProveedorVO> {
-
-    private final ProveedorDAO dao;
+public class DetalleProductoController implements ICrud<DetalleProductoVO> {
     
-    public ProveedorController() {
-        dao = new ProveedorDAO();
+    private final DetalleProductoDAO dao;
+    
+    public DetalleProductoController() {
+        dao = new DetalleProductoDAO();
     }
 
     @Override
-    public boolean create(ProveedorVO proveedor) {
-        return dao.create(proveedor);
+    public boolean create(DetalleProductoVO detalle) {
+        return dao.create(detalle);
     }
 
     @Override
-    public LinkedList<ProveedorVO> readAll() {
+    public LinkedList<DetalleProductoVO> readAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(ProveedorVO obj) {
+    public boolean update(DetalleProductoVO obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -35,15 +34,8 @@ public class ProveedorController implements ICrud<ProveedorVO> {
     }
 
     @Override
-    public ProveedorVO read(Object id) {
+    public DetalleProductoVO read(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public HashMap<String, Integer> cargarComboProveedores() {
-        return dao.cargarComboProveedores();
-    }    
-    
-    public ProveedorVO buscarProveedor(String nit) {
-        return dao.buscarProveedor(nit);
-    }
 }

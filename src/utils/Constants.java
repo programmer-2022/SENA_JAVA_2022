@@ -17,6 +17,7 @@ public class Constants {
     public static final String PASSWORD_INVALID = "Las contraseñas no coinciden";
     public static final String ERROR_CREDENTIALS = "Credenciales incorrectas";
     public static final String USER_EXIST = "El usuario ya se encuentra registrado";
+    public static final String PROVEEDOR_EXIST = "El proveedor ya se encuentra registrado";
     
     public static final int ROL_ADMIN = 3;
     public static final int ROL_AUXILIAR = 4;
@@ -76,6 +77,12 @@ public class Constants {
     public static final String PROVEEDOR_DIRECCION = "ProDireccion";
     public static final String PROVEEDOR_EMAIL = "ProEmail";
     
+    //tabla detalle producto
+    public static final String DETALLE_CANTIDAD = "DetProCantidad";
+    public static final String DETALLE_FECHA = "DetProFechaRegistro";
+    public static final String DETALLE_PROVEEDOR_ID = "TblProveedores_ProveedorID";
+    public static final String DETALLE_PRODUCTO_ID = "TblProductos_ProductoID";
+
     public static final String PATH_SERIAL_EMPLEADO = System.getProperty("user.dir").concat("\\output\\empleado.dat");
     public static final String PATH_SERIAL_TODOS_EMPLEADOS = System.getProperty("user.dir").concat("\\output\\empleados.dat");
     

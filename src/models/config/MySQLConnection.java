@@ -3,6 +3,8 @@ package models.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utils.Constants;
 import utils.Messages;
 
@@ -54,4 +56,29 @@ public class MySQLConnection {
     public void close_connection() {
         instance = null;
     }
+    
+    public void setAutocommitDisable() {
+        try {
+            xcon.setAutoCommit(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void rollBack() {
+        try {
+            xcon.rollback();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void Commit() {
+        try {
+            xcon.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

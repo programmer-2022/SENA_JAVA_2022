@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import models.config.MySQLConnection;
 import models.interfaces.ICrud;
 import models.vo.CategoriaVO;
+import models.vo.DetalleProductoVO;
 import models.vo.ProductoVO;
 import utils.Constants;
 import utils.Messages;
@@ -16,27 +17,60 @@ public class ProductoDAO implements ICrud<ProductoVO> {
 
     private static MySQLConnection xcon;
     
-    @Override
-    public boolean create(ProductoVO producto) {
+    public void crear(DetalleProductoVO detalle) {
         xcon = MySQLConnection.getInstance();
+        xcon.setAutocommitDisable();
         try {
-            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_crear_producto(?,?,?,?,?)}");
-            ps.setString(1, producto.getCode());
-            ps.setString(2, producto.getName());
-            ps.setString(3, producto.getSerial());
-            ps.setString(4, producto.getStatus());
-            ps.setInt(5, producto.getCategoria().getId());
-
-            if(ps.executeUpdate() > 0) return true;
+            PreparedStatement psProducto = xcon.getConnection().prepareCall("{call sp_crear_producto(?,?,?,?,?)}");
+            psProducto.setString(1, detalle.getProducto().getCode());
+            psProducto.setString(2, detalle.getProducto().getName());
+            psProducto.setString(3, detalle.getProducto().getSerial());
+            psProducto.setString(4, detalle.getProducto().getStatus());
+            psProducto.setInt(5, detalle.getProducto().getCategoria().getId());
+            psProducto.executeUpdate();
+            //Retornar el ID del producto
+            ProductoVO pro = new ProductoVO();
+            
+            PreparedStatement psConsulta = xcon.getConnection().prepareCall("{call sp_buscar_producto_codigo(?)}");
+            psConsulta.setString(1, detalle.getProducto().getCode());
+            ResultSet rs = psConsulta.executeQuery();
+            while(rs.next()) {
+                pro.setId(rs.getInt(Constants.PRODUCT_ID));
+            }
                         
+            PreparedStatement psDetalle = xcon.getConnection().prepareCall("{call sp_crear_detalle_producto(?,?,?,?)}");
+            psDetalle.setInt(1, detalle.getCantidad());
+            psDetalle.setDate(2, detalle.getFecha());
+            psDetalle.setInt(3, detalle.getProveedor().getId());
+            psDetalle.setInt(4, pro.getId());
+            psDetalle.executeUpdate();
+            xcon.Commit();
+            System.out.println("Se insertó correctamente");
         } catch (SQLException e) {
+            xcon.rollBack();
             Messages.msgError(Constants.ERROR_SERVER);
         } catch (Exception e) {
+            xcon.rollBack();
             Messages.msgError(Constants.ERROR_SYSTEM);            
         } finally {
             xcon.close_connection();
         }
-        return false;
+    }   
+    /*
+    ProductoVO pro = productController.readOne(newProduct.getCode());
+            
+            if(pro != null) {
+                newProduct.setId(pro.getId());
+                DetalleProductoVO detalle = getDetalleObj(newProduct, newProveedor);
+                
+                if(detalleProductoController.create(detalle)) {
+                    Messages.msgSuccess(Constants.OK_INSERT);
+                }
+            }         */   
+    
+    @Override
+    public boolean create(ProductoVO producto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -71,6 +105,26 @@ public class ProductoDAO implements ICrud<ProductoVO> {
         return listaProductos;
     }
 
+    public ProductoVO readOne(String codigo) {
+        xcon = MySQLConnection.getInstance();
+        ProductoVO producto = new ProductoVO();
+        try {
+            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_buscar_producto_codigo(?)}");
+            ps.setString(1, codigo);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                producto.setId(rs.getInt(Constants.PRODUCT_ID));
+            }
+        } catch (SQLException e) {
+            Messages.msgError(Constants.ERROR_SERVER);
+        } catch (Exception e) {
+            Messages.msgError(Constants.ERROR_SYSTEM);            
+        } finally {
+            xcon.close_connection();
+        }
+        return producto;
+    }
+    
     @Override
     public boolean update(ProductoVO obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -107,5 +161,6 @@ public class ProductoDAO implements ICrud<ProductoVO> {
             xcon.close_connection();
         }
         return map;
-    }    
+    }        
+                
 }
