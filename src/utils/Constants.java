@@ -18,6 +18,11 @@ public class Constants {
     public static final String ERROR_CREDENTIALS = "Credenciales incorrectas";
     public static final String USER_EXIST = "El usuario ya se encuentra registrado";
     public static final String PROVEEDOR_EXIST = "El proveedor ya se encuentra registrado";
+    public static final String CODE_REQUIRED = "Código de producto requerido";
+    public static final String PROVEEDOR_FECHA_REQUIRED = "Proveedor y fecha requeridos";
+    
+    public static final String SEARCH_CODE = "Código";
+    public static final String REQUIRED_SEARCH = "Ingrese un parámetro de búsqueda válido en los campos proveedor y fecha de registro";
     
     public static final int ROL_ADMIN = 3;
     public static final int ROL_AUXILIAR = 4;
@@ -78,6 +83,7 @@ public class Constants {
     public static final String PROVEEDOR_EMAIL = "ProEmail";
     
     //tabla detalle producto
+    public static final String DETALLE_ID = "DetProID";
     public static final String DETALLE_CANTIDAD = "DetProCantidad";
     public static final String DETALLE_FECHA = "DetProFechaRegistro";
     public static final String DETALLE_PROVEEDOR_ID = "TblProveedores_ProveedorID";
@@ -88,4 +94,8 @@ public class Constants {
     
     //Credenciales permisos usuarios
     public static final String PATH_CREDENTIALS = System.getProperty("user.dir").concat("\\output\\credentials.dat");    
+    //Detalle de producto
+    public static final String PATH_DETALLE_PRODUCTO = System.getProperty("user.dir").concat("\\output\\details.dat");
+    public static final String PATH_DETALLE_TODOS_PRODUCTOS = System.getProperty("user.dir").concat("\\output\\all_details.dat");
+    
 }

@@ -3,6 +3,7 @@ package utils;
 import com.toedter.calendar.JDateChooser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -29,4 +30,9 @@ public class MyDate {
         }
         return null;
     }
+    
+    public static String Date2Str(Date pDate) {
+        return sdf.format(pDate);
+    }
+    
 }

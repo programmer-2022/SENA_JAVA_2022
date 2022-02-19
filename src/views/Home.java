@@ -17,7 +17,7 @@ public class Home extends javax.swing.JFrame {
     private PnlEmpleados pnlEmpleados;
     private PnlSalidas pnlSalidas;
     private PnlEntradas pnlEntradas;
-    private PnlProductos pnlProductos;
+    private static PnlProductos pnlProductos;
     private PnlProveedores pnlProveedores;
     private PnlConfiguracion pnlConfiguracion;
     
@@ -304,7 +304,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        pnlProductos = new PnlProductos();
+        pnlProductos = PnlProductos.getInstance();
         this.loadPanel(pnlProductos);
     }//GEN-LAST:event_btnProductosActionPerformed
 

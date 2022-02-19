@@ -6,7 +6,6 @@ import models.dao.ProductoDAO;
 import models.interfaces.ICrud;
 import models.vo.DetalleProductoVO;
 import models.vo.ProductoVO;
-import models.vo.ProveedorVO;
 
 public class ProductController implements ICrud<ProductoVO>{
 
@@ -16,8 +15,8 @@ public class ProductController implements ICrud<ProductoVO>{
         dao = new ProductoDAO();
     }
 
-    public void crear(DetalleProductoVO detalle) {
-        dao.crear(detalle);
+    public boolean crear(DetalleProductoVO detalle) {
+        return dao.crear(detalle);
     }
     
     @Override

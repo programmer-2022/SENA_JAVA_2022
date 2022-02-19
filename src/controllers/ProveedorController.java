@@ -45,5 +45,5 @@ public class ProveedorController implements ICrud<ProveedorVO> {
     
     public ProveedorVO buscarProveedor(String nit) {
         return dao.buscarProveedor(nit);
-    }
+    } 
 }

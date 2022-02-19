@@ -16,8 +16,9 @@ import utils.Messages;
 public class ProductoDAO implements ICrud<ProductoVO> {
 
     private static MySQLConnection xcon;
+    private boolean exito;
     
-    public void crear(DetalleProductoVO detalle) {
+    public boolean crear(DetalleProductoVO detalle) {
         xcon = MySQLConnection.getInstance();
         xcon.setAutocommitDisable();
         try {
@@ -45,28 +46,20 @@ public class ProductoDAO implements ICrud<ProductoVO> {
             psDetalle.setInt(4, pro.getId());
             psDetalle.executeUpdate();
             xcon.Commit();
-            System.out.println("Se insertó correctamente");
+            exito = true;
         } catch (SQLException e) {
             xcon.rollBack();
             Messages.msgError(Constants.ERROR_SERVER);
+            exito = false;
         } catch (Exception e) {
             xcon.rollBack();
-            Messages.msgError(Constants.ERROR_SYSTEM);            
+            Messages.msgError(Constants.ERROR_SYSTEM);
+            exito = false;
         } finally {
             xcon.close_connection();
         }
+        return exito;
     }   
-    /*
-    ProductoVO pro = productController.readOne(newProduct.getCode());
-            
-            if(pro != null) {
-                newProduct.setId(pro.getId());
-                DetalleProductoVO detalle = getDetalleObj(newProduct, newProveedor);
-                
-                if(detalleProductoController.create(detalle)) {
-                    Messages.msgSuccess(Constants.OK_INSERT);
-                }
-            }         */   
     
     @Override
     public boolean create(ProductoVO producto) {

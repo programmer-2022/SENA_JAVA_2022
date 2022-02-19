@@ -1,7 +1,11 @@
 package models.vo;
 
-public class ProductoVO {
+import java.io.Serializable;
+
+public class ProductoVO implements Serializable {
  
+    private static final long serialVersionUID = 1L;
+    
     private int id;
     private String code;
     private String name;

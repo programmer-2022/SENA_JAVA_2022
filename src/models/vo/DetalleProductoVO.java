@@ -1,9 +1,12 @@
 package models.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class DetalleProductoVO {
+public class DetalleProductoVO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private int id;
     private ProveedorVO proveedor;
     private int cantidad;

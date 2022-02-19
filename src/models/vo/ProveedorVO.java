@@ -1,6 +1,10 @@
 package models.vo;
 
-public class ProveedorVO {
+import java.io.Serializable;
+
+public class ProveedorVO implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     
     private int id;
     private String nit;

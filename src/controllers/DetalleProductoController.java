@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import models.dao.DetalleProductoDAO;
 import models.interfaces.ICrud;
@@ -20,7 +21,7 @@ public class DetalleProductoController implements ICrud<DetalleProductoVO> {
 
     @Override
     public LinkedList<DetalleProductoVO> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dao.readAll();
     }
 
     @Override
@@ -37,5 +38,13 @@ public class DetalleProductoController implements ICrud<DetalleProductoVO> {
     public DetalleProductoVO read(Object id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public DetalleProductoVO buscarProducto(String nit, String codigo, String fecha) {
+        return dao.buscarProducto(nit, codigo, fecha);
+    }    
+    
+    public ArrayList<DetalleProductoVO> buscarTodos(String nit, String fecha) {
+        return dao.buscarTodos(nit, fecha);
+    }   
     
 }
