@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/views/PnlProductos.java</file>
             <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/models/dao/DetalleProductoDAO.java</file>
-            <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/utils/Constants.java</file>
-            <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/models/dao/ProductoDAO.java</file>
-            <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/controllers/ProductController.java</file>
+            <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/models/dao/ActaDAO.java</file>
+            <file>file:/C:/Users/Alienware/Desktop/InventarioSena/src/views/PnlEntradasSalidas.java</file>
         </group>
     </open-files>
 </project-private>

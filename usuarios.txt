@@ -1,0 +1,9 @@
+
+--Usuario para auxiliares
+user: auxcomp
+password: 1234
+
+-- Usuario para administrador
+user: admincomp
+password: 123
+

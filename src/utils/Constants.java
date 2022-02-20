@@ -97,5 +97,7 @@ public class Constants {
     //Detalle de producto
     public static final String PATH_DETALLE_PRODUCTO = System.getProperty("user.dir").concat("\\output\\details.dat");
     public static final String PATH_DETALLE_TODOS_PRODUCTOS = System.getProperty("user.dir").concat("\\output\\all_details.dat");
+    public static final String PATH_DETALLE_ACTA = System.getProperty("user.dir").concat("\\output\\acta_details.dat");
+    
     
 }

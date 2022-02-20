@@ -57,7 +57,6 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
         txtFecha = new com.toedter.calendar.JDateChooser();
         txtCodigo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtProveedorID = new javax.swing.JTextField();
         rbtUno = new javax.swing.JRadioButton();
         rbtTodos = new javax.swing.JRadioButton();
 
@@ -95,8 +94,6 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Seleccione el filtro para la búsqueda:");
 
-        txtProveedorID.setEditable(false);
-
         buttonGroup1.add(rbtUno);
         rbtUno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtUno.setSelected(true);
@@ -114,17 +111,17 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(12, 12, 12))
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
                         .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                         .addComponent(txtCodigo)
                         .addComponent(txtNIT)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtProveedorID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rbtUno)
                         .addGap(18, 18, 18)
@@ -154,9 +151,7 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
                 .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtProveedorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,9 +232,7 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            buscar();
-        }
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) buscar();
     }//GEN-LAST:event_btnBuscarKeyPressed
 
     public String getNit() {
@@ -308,6 +301,5 @@ public class ModalBuscarDetalleProducto extends javax.swing.JFrame {
     private static javax.swing.JTextField txtCodigo;
     private static com.toedter.calendar.JDateChooser txtFecha;
     private static javax.swing.JTextField txtNIT;
-    private javax.swing.JTextField txtProveedorID;
     // End of variables declaration//GEN-END:variables
 }

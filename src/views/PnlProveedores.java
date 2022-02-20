@@ -198,7 +198,7 @@ public class PnlProveedores extends javax.swing.JPanel {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
 
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -206,7 +206,7 @@ public class PnlProveedores extends javax.swing.JPanel {
 
         txtDireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        txtNuevo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNuevo.setText("Nuevo");
         txtNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +238,7 @@ public class PnlProveedores extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(txtDireccion))
                     .addComponent(txtEmail)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,12 +274,13 @@ public class PnlProveedores extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addGap(13, 13, 13)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 

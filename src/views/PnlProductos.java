@@ -3,12 +3,9 @@ package views;
 import controllers.DetalleProductoController;
 import controllers.ProductController;
 import controllers.ProveedorController;
-import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.vo.CategoriaVO;
@@ -353,6 +350,7 @@ public class PnlProductos extends javax.swing.JPanel {
         label3.setText("Productos");
         jPanel2.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
+        txtCodigo.setEditable(false);
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

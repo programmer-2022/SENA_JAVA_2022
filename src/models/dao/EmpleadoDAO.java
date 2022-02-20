@@ -135,6 +135,33 @@ public class EmpleadoDAO implements ICrud<EmpleadoVO> {
         return map;
     }
     
+    public HashMap<String, Integer> cargarComboEmpleados() {
+        
+        xcon = MySQLConnection.getInstance();
+        HashMap<String, Integer> map = new HashMap<>();
+        
+        try {
+            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_listar_empleados}");
+            ResultSet rs = ps.executeQuery();
+            EmpleadoVO empleado;
+            
+            while(rs.next()) {
+                empleado = new EmpleadoVO();
+                empleado.setId(rs.getInt(Constants.EMP_ID));
+                empleado.setNombre(rs.getString(Constants.EMP_NOMBRE));
+                empleado.setApellido(rs.getString(Constants.EMP_APELLIDO));
+                map.put(empleado.getNombre() + " " + empleado.getApellido(), empleado.getId());
+            }
+        } catch (SQLException e) {
+            Messages.msgError(Constants.ERROR_SERVER);
+        } catch (Exception e) {
+            Messages.msgError(Constants.ERROR_SYSTEM);            
+        } finally {
+            xcon.close_connection();
+        }
+        return map;
+    }
+    
     public HashMap<String, Integer> cargarComboCargos() {
         xcon = MySQLConnection.getInstance();
         HashMap<String, Integer> map = new HashMap<>();

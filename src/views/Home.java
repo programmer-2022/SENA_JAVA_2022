@@ -15,8 +15,7 @@ public class Home extends javax.swing.JFrame {
     private PnlHome pnlHome;
     private PnlUsuarios pnlUsuarios;
     private PnlEmpleados pnlEmpleados;
-    private PnlSalidas pnlSalidas;
-    private PnlEntradas pnlEntradas;
+    private static PnlEntradasSalidas pnlEntradasSalidas;
     private static PnlProductos pnlProductos;
     private PnlProveedores pnlProveedores;
     private PnlConfiguracion pnlConfiguracion;
@@ -72,7 +71,6 @@ public class Home extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnUsuarios = new javax.swing.JButton();
         btnEntradas = new javax.swing.JButton();
-        btnSalidas = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -126,23 +124,12 @@ public class Home extends javax.swing.JFrame {
 
         btnEntradas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEntradas.setForeground(new java.awt.Color(204, 204, 204));
-        btnEntradas.setText(" Inventario / Entradas");
+        btnEntradas.setText("Entradas / Salidas");
         btnEntradas.setContentAreaFilled(false);
         btnEntradas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntradasActionPerformed(evt);
-            }
-        });
-
-        btnSalidas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnSalidas.setForeground(new java.awt.Color(204, 204, 204));
-        btnSalidas.setText("Inventario / Salidas");
-        btnSalidas.setContentAreaFilled(false);
-        btnSalidas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSalidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalidasActionPerformed(evt);
             }
         });
 
@@ -212,7 +199,6 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,8 +222,6 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSalidas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,14 +293,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradasActionPerformed
-        pnlEntradas = new PnlEntradas();
-        this.loadPanel(pnlEntradas);
+        pnlEntradasSalidas = PnlEntradasSalidas.getInstance();
+        this.loadPanel(pnlEntradasSalidas);
     }//GEN-LAST:event_btnEntradasActionPerformed
-
-    private void btnSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidasActionPerformed
-        pnlSalidas = new PnlSalidas();
-        this.loadPanel(pnlSalidas);
-    }//GEN-LAST:event_btnSalidasActionPerformed
 
     private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
         pnlConfiguracion = new PnlConfiguracion();
@@ -390,7 +369,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
-    private javax.swing.JButton btnSalidas;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JPanel jPanel1;

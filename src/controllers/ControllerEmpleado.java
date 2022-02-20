@@ -50,5 +50,8 @@ public class ControllerEmpleado implements ICrud<EmpleadoVO>{
     public EmpleadoVO buscarID(int identificacion) {
         return dao.buscarID(identificacion);
     }
-            
+    
+    public HashMap<String, Integer> cargarComboEmpleados() {
+        return dao.cargarComboEmpleados();
+    }            
 }
