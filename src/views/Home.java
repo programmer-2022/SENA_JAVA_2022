@@ -259,7 +259,7 @@ public class Home extends javax.swing.JFrame {
 
         lblUsuario.setAlignment(java.awt.Label.CENTER);
         lblUsuario.setForeground(new java.awt.Color(204, 204, 204));
-        lblUsuario.setText("Usuario activo: Jonathan Guillermo Jaimes Moreno");
+        lblUsuario.setText("Usuario activo: Cesar Martinez");
         jPanel2.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, 420, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 50));
