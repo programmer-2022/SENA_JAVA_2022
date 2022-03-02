@@ -18,8 +18,7 @@ public class Home extends javax.swing.JFrame {
     private static PnlEntradasSalidas pnlEntradasSalidas;
     private static PnlProductos pnlProductos;
     private PnlProveedores pnlProveedores;
-    private PnlConfiguracion pnlConfiguracion;
-    
+        
     private Permissions permissions;
     
     public Home() {
@@ -75,15 +74,14 @@ public class Home extends javax.swing.JFrame {
         btnProductos = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        btnConfiguracion = new javax.swing.JButton();
         btnEmpleados = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
         label4 = new java.awt.Label();
         lblRol = new java.awt.Label();
         lblUsuario = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1600, 800));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -102,7 +100,7 @@ public class Home extends javax.swing.JFrame {
 
         btnHome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnHome.setForeground(new java.awt.Color(204, 204, 204));
-        btnHome.setText("Home");
+        btnHome.setText("Inicio");
         btnHome.setContentAreaFilled(false);
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -166,17 +164,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnConfiguracion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnConfiguracion.setForeground(new java.awt.Color(204, 204, 204));
-        btnConfiguracion.setText("Configuración");
-        btnConfiguracion.setContentAreaFilled(false);
-        btnConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguracionActionPerformed(evt);
-            }
-        });
-
         btnEmpleados.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEmpleados.setForeground(new java.awt.Color(204, 204, 204));
         btnEmpleados.setText("Empleados");
@@ -196,7 +183,6 @@ public class Home extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEntradas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,9 +212,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
@@ -238,13 +222,6 @@ public class Home extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(19, 15, 64));
         jPanel2.setPreferredSize(new java.awt.Dimension(300, 30));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label1.setForeground(new java.awt.Color(204, 204, 204));
-        label1.setText("X");
-        label1.setVisible(false);
-        jPanel2.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        label1.getAccessibleContext().setAccessibleDescription("");
 
         label4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label4.setForeground(new java.awt.Color(204, 204, 204));
@@ -297,11 +274,6 @@ public class Home extends javax.swing.JFrame {
         this.loadPanel(pnlEntradasSalidas);
     }//GEN-LAST:event_btnEntradasActionPerformed
 
-    private void btnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracionActionPerformed
-        pnlConfiguracion = new PnlConfiguracion();
-        this.loadPanel(pnlConfiguracion);
-    }//GEN-LAST:event_btnConfiguracionActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.closeApp();
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -327,8 +299,7 @@ public class Home extends javax.swing.JFrame {
     private void disableUIforAuxiliarRol() {
         if(permissions.getRol() == Constants.ROL_AUXILIAR) {
             btnEmpleados.setVisible(false);
-            btnUsuarios.setVisible(false);
-            btnConfiguracion.setVisible(false);
+            btnUsuarios.setVisible(false);            
         }
     }
         
@@ -363,7 +334,6 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfiguracion;
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnEntradas;
     private javax.swing.JButton btnHome;
@@ -375,7 +345,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private java.awt.Label label1;
     private java.awt.Label label4;
     private java.awt.Label lblRol;
     private java.awt.Label lblUsuario;

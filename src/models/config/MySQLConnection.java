@@ -15,8 +15,8 @@ public class MySQLConnection {
 
     private MySQLConnection() {
         String url = "jdbc:mysql://localhost:3306/";
-        String user = "compensar2021";
-        String password = "#R00tk1t9";
+        String user = "root";
+        String password = "";
         String db_name = "dbcompensar2021";
         
         try {

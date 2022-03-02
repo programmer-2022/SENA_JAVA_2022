@@ -128,12 +128,11 @@ public class PnlProveedores extends javax.swing.JPanel {
         txtNombre = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         txtNuevo = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -195,12 +194,6 @@ public class PnlProveedores extends javax.swing.JPanel {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEditar.setText("Editar");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Dirección");
 
@@ -238,15 +231,11 @@ public class PnlProveedores extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addComponent(txtDireccion))
                     .addComponent(txtEmail)
+                    .addComponent(txtNombre)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombre)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,13 +263,11 @@ public class PnlProveedores extends javax.swing.JPanel {
                 .addComponent(jLabel4)
                 .addGap(13, 13, 13)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,8 +345,6 @@ public class PnlProveedores extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -40,6 +40,8 @@ public class PnlEntradasSalidas extends javax.swing.JPanel {
         actaController = new ActaController();
         cargarComboEmpleados();        
         cbxTipoActa.setSelectedIndex(0);
+        txtEmpleadoID.setVisible(false);
+        txtProveedorID.setVisible(false);
     }
     
     public synchronized static PnlEntradasSalidas getInstance() {
@@ -286,6 +288,7 @@ public class PnlEntradasSalidas extends javax.swing.JPanel {
 
         jLabel8.setText("jLabel8");
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -302,7 +305,7 @@ public class PnlEntradasSalidas extends javax.swing.JPanel {
 
         label3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label3.setForeground(new java.awt.Color(204, 204, 204));
-        label3.setText("Entradas");
+        label3.setText("Actas - Entrada / Salida");
         jPanel2.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

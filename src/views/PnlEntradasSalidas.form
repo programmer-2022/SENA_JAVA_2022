@@ -11,6 +11,9 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1300, 750]"/>
     </Property>
@@ -216,7 +219,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Entradas"/>
+            <Property name="text" type="java.lang.String" value="Actas - Entrada / Salida"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

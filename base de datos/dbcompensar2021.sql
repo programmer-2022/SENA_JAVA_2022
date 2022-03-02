@@ -1,25 +1,378 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2022 a las 03:29:17
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.8
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- --------------------------------------------------------
 
 --
--- Base de datos: `dbcompensar2021`
+-- Estructura de tabla para la tabla `tblacta`
 --
+
+CREATE TABLE `tblacta` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(20) NOT NULL,
+  `fecha` date NOT NULL,
+  `observaciones` varchar(255) NOT NULL,
+  `responsable` varchar(100) NOT NULL,
+  `proveedorID` int(11) NOT NULL,
+  `empleadoID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblcargos`
+--
+
+CREATE TABLE `tblcargos` (
+  `CargoID` int(11) NOT NULL,
+  `CarNombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblcargos`
+--
+
+INSERT INTO `tblcargos` (`CargoID`, `CarNombre`) VALUES
+(1, 'Administrador de Bodega'),
+(2, 'Auxiliar de Bodega');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblcategorias`
+--
+
+CREATE TABLE `tblcategorias` (
+  `CategoriaID` int(11) NOT NULL,
+  `CatNombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblcategorias`
+--
+
+INSERT INTO `tblcategorias` (`CategoriaID`, `CatNombre`) VALUES
+(1, 'Tablet'),
+(2, 'PC Escritorio'),
+(3, 'Laptop'),
+(4, 'Smartphone');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbldetalleproducto`
+--
+
+CREATE TABLE `tbldetalleproducto` (
+  `DetProID` int(11) NOT NULL,
+  `DetProCantidad` int(11) NOT NULL,
+  `DetProFechaRegistro` date NOT NULL,
+  `TblProveedores_ProveedorID` int(11) DEFAULT NULL,
+  `TblProductos_ProductoID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblempleados`
+--
+
+CREATE TABLE `tblempleados` (
+  `EmpleadoID` int(11) NOT NULL,
+  `EmpIdentificacion` int(11) NOT NULL,
+  `EmpNombre` varchar(50) NOT NULL,
+  `EmpApellido` varchar(50) NOT NULL,
+  `TblGeneros_GeneroID` int(11) DEFAULT NULL,
+  `TblCargos_CargoID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblempleados`
+--
+
+INSERT INTO `tblempleados` (`EmpleadoID`, `EmpIdentificacion`, `EmpNombre`, `EmpApellido`, `TblGeneros_GeneroID`, `TblCargos_CargoID`) VALUES
+(9, 123, 'GUILLERMO', 'LUNA', 2, 2),
+(10, 111, 'FABIAN', 'BELTRÁN', 2, 2),
+(11, 123456, 'RAMIRO', 'CORDOVA', 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblgeneros`
+--
+
+CREATE TABLE `tblgeneros` (
+  `GeneroID` int(11) NOT NULL,
+  `GenNombre` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblgeneros`
+--
+
+INSERT INTO `tblgeneros` (`GeneroID`, `GenNombre`) VALUES
+(1, 'Femenino'),
+(2, 'Masculino'),
+(3, 'Otro');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblproductos`
+--
+
+CREATE TABLE `tblproductos` (
+  `ProductoID` int(11) NOT NULL,
+  `ProCodigo` varchar(20) NOT NULL,
+  `ProNombre` varchar(20) NOT NULL,
+  `ProSerial` varchar(50) NOT NULL,
+  `ProEstado` varchar(5) NOT NULL,
+  `TblCategorias_CategoriaID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblproductos`
+--
+
+INSERT INTO `tblproductos` (`ProductoID`, `ProCodigo`, `ProNombre`, `ProSerial`, `ProEstado`, `TblCategorias_CategoriaID`) VALUES
+(30, '001', 'Computador Dell', 'XAR123', 'Nuevo', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblproveedores`
+--
+
+CREATE TABLE `tblproveedores` (
+  `ProveedorID` int(11) NOT NULL,
+  `ProNIT` varchar(20) NOT NULL,
+  `ProNombre` varchar(80) NOT NULL,
+  `ProTelefono` varchar(20) DEFAULT NULL,
+  `ProDireccion` varchar(150) DEFAULT NULL,
+  `ProEmail` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblproveedores`
+--
+
+INSERT INTO `tblproveedores` (`ProveedorID`, `ProNIT`, `ProNombre`, `ProTelefono`, `ProDireccion`, `ProEmail`) VALUES
+(3, '88282', 'COMFAMILIAR DE NARIÑO', '72020', 'Calle 15 # 14 15', 'comfamiliar@gmail.com'),
+(4, '8003154548', 'CASINO CARNAVAL', '72020', 'Unicentro', 'casinocarnavalpasto@gmail.com'),
+(5, '123', 'CATANA SAS', '75154', 'Av. 14 # 54 b 47', 'catana@gmail.com'),
+(6, '124', 'COMPENSAR', '12132', 'Av. 45 # 45 - 78', 'compensarsas@hotmail.com'),
+(7, '1515', 'MERCABODEGA', '123', 'Cra 44 - 45 - 78', 'mercabodega@outlook.es'),
+(8, '12345', 'PROVEEDOR PRUEBA', '72020', 'CENTRO', 'prueba@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblroles`
+--
+
+CREATE TABLE `tblroles` (
+  `IdRol` int(11) NOT NULL,
+  `RolNombre` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblroles`
+--
+
+INSERT INTO `tblroles` (`IdRol`, `RolNombre`) VALUES
+(3, 'Administrador'),
+(4, 'Auxiliar');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblusuarios`
+--
+
+CREATE TABLE `tblusuarios` (
+  `UsuarioID` int(11) NOT NULL,
+  `UsuNombre` varchar(20) NOT NULL,
+  `UsuClave` varchar(255) NOT NULL,
+  `TblRoles_IdRol` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblusuarios`
+--
+
+INSERT INTO `tblusuarios` (`UsuarioID`, `UsuNombre`, `UsuClave`, `TblRoles_IdRol`) VALUES
+(4, 'auxcomp', 'XNniVhA+JIg=', 4),
+(5, 'admincomp', 'NAmh3z1X//8=', 3);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `tblacta`
+--
+ALTER TABLE `tblacta`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo` (`codigo`),
+  ADD KEY `proveedorID` (`proveedorID`),
+  ADD KEY `empleadoID` (`empleadoID`);
+
+--
+-- Indices de la tabla `tblcargos`
+--
+ALTER TABLE `tblcargos`
+  ADD PRIMARY KEY (`CargoID`);
+
+--
+-- Indices de la tabla `tblcategorias`
+--
+ALTER TABLE `tblcategorias`
+  ADD PRIMARY KEY (`CategoriaID`);
+
+--
+-- Indices de la tabla `tbldetalleproducto`
+--
+ALTER TABLE `tbldetalleproducto`
+  ADD PRIMARY KEY (`DetProID`),
+  ADD KEY `tbldetalleproducto_ibfk_1` (`TblProductos_ProductoID`),
+  ADD KEY `tbldetalleproducto_ibfk_2` (`TblProveedores_ProveedorID`);
+
+--
+-- Indices de la tabla `tblempleados`
+--
+ALTER TABLE `tblempleados`
+  ADD PRIMARY KEY (`EmpleadoID`),
+  ADD UNIQUE KEY `EmpIdentificacion` (`EmpIdentificacion`),
+  ADD UNIQUE KEY `EmpIdentificacion_2` (`EmpIdentificacion`),
+  ADD KEY `TblCargos_CargoID` (`TblCargos_CargoID`),
+  ADD KEY `TblGeneros_GeneroID` (`TblGeneros_GeneroID`);
+
+--
+-- Indices de la tabla `tblgeneros`
+--
+ALTER TABLE `tblgeneros`
+  ADD PRIMARY KEY (`GeneroID`);
+
+--
+-- Indices de la tabla `tblproductos`
+--
+ALTER TABLE `tblproductos`
+  ADD PRIMARY KEY (`ProductoID`),
+  ADD UNIQUE KEY `ProCodigo` (`ProCodigo`),
+  ADD KEY `TblCategorias_CategoriaID` (`TblCategorias_CategoriaID`);
+
+--
+-- Indices de la tabla `tblproveedores`
+--
+ALTER TABLE `tblproveedores`
+  ADD PRIMARY KEY (`ProveedorID`),
+  ADD UNIQUE KEY `ProNIT` (`ProNIT`);
+
+--
+-- Indices de la tabla `tblroles`
+--
+ALTER TABLE `tblroles`
+  ADD PRIMARY KEY (`IdRol`);
+
+--
+-- Indices de la tabla `tblusuarios`
+--
+ALTER TABLE `tblusuarios`
+  ADD PRIMARY KEY (`UsuarioID`),
+  ADD UNIQUE KEY `UsuNombre` (`UsuNombre`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tblacta`
+--
+ALTER TABLE `tblacta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tblcargos`
+--
+ALTER TABLE `tblcargos`
+  MODIFY `CargoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tblcategorias`
+--
+ALTER TABLE `tblcategorias`
+  MODIFY `CategoriaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tbldetalleproducto`
+--
+ALTER TABLE `tbldetalleproducto`
+  MODIFY `DetProID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `tblempleados`
+--
+ALTER TABLE `tblempleados`
+  MODIFY `EmpleadoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `tblgeneros`
+--
+ALTER TABLE `tblgeneros`
+  MODIFY `GeneroID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `tblproductos`
+--
+ALTER TABLE `tblproductos`
+  MODIFY `ProductoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de la tabla `tblproveedores`
+--
+ALTER TABLE `tblproveedores`
+  MODIFY `ProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `tblroles`
+--
+ALTER TABLE `tblroles`
+  MODIFY `IdRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tblusuarios`
+--
+ALTER TABLE `tblusuarios`
+  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `tblacta`
+--
+ALTER TABLE `tblacta`
+  ADD CONSTRAINT `tblacta_ibfk_1` FOREIGN KEY (`proveedorID`) REFERENCES `tblproveedores` (`ProveedorID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tblacta_ibfk_2` FOREIGN KEY (`empleadoID`) REFERENCES `tblempleados` (`EmpleadoID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tbldetalleproducto`
+--
+ALTER TABLE `tbldetalleproducto`
+  ADD CONSTRAINT `tbldetalleproducto_ibfk_1` FOREIGN KEY (`TblProductos_ProductoID`) REFERENCES `tblproductos` (`ProductoID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbldetalleproducto_ibfk_2` FOREIGN KEY (`TblProveedores_ProveedorID`) REFERENCES `tblproveedores` (`ProveedorID`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tblempleados`
+--
+ALTER TABLE `tblempleados`
+  ADD CONSTRAINT `tblempleados_ibfk_1` FOREIGN KEY (`TblCargos_CargoID`) REFERENCES `tblcargos` (`CargoID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tblempleados_ibfk_2` FOREIGN KEY (`TblGeneros_GeneroID`) REFERENCES `tblgeneros` (`GeneroID`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tblproductos`
+--
+ALTER TABLE `tblproductos`
+  ADD CONSTRAINT `tblproductos_ibfk_1` FOREIGN KEY (`TblCategorias_CategoriaID`) REFERENCES `tblcategorias` (`CategoriaID`) ON DELETE SET NULL ON UPDATE CASCADE;
+
 
 DELIMITER $$
 --
@@ -142,6 +495,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_buscar_nombre_usuario` (IN `pUsu
         `TblRoles_IdRol` 
      FROM `tblusuarios`
      WHERE UsuNombre=pUsuNombre;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_buscar_producto_codigo` (IN `pCodigo` VARCHAR(20))  BEGIN
+	SELECT pro.ProductoID
+    FROM tblproductos AS pro
+    WHERE pro.ProCodigo=pCodigo;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_buscar_proveedor_nit` (IN `pProNIT` VARCHAR(20))  BEGIN
@@ -494,409 +853,3 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_usuarios` ()  BEGIN
 END$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblacta`
---
-
-CREATE TABLE `tblacta` (
-  `id` int(11) NOT NULL,
-  `codigo` varchar(20) NOT NULL,
-  `fecha` date NOT NULL,
-  `observaciones` varchar(255) NOT NULL,
-  `responsable` varchar(100) NOT NULL,
-  `proveedorID` int(11) NOT NULL,
-  `empleadoID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblacta`
---
-
-INSERT INTO `tblacta` (`id`, `codigo`, `fecha`, `observaciones`, `responsable`, `proveedorID`, `empleadoID`) VALUES
-(0, 'ENT-001', '2022-02-08', 'asd', 'ASD', 6, 10);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblcargos`
---
-
-CREATE TABLE `tblcargos` (
-  `CargoID` int(11) NOT NULL,
-  `CarNombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblcargos`
---
-
-INSERT INTO `tblcargos` (`CargoID`, `CarNombre`) VALUES
-(1, 'Administrador de Bodega'),
-(2, 'Auxiliar de Bodega');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblcategorias`
---
-
-CREATE TABLE `tblcategorias` (
-  `CategoriaID` int(11) NOT NULL,
-  `CatNombre` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblcategorias`
---
-
-INSERT INTO `tblcategorias` (`CategoriaID`, `CatNombre`) VALUES
-(1, 'Tablet'),
-(2, 'PC Escritorio'),
-(3, 'Laptop'),
-(4, 'Smartphone');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbldetalleproducto`
---
-
-CREATE TABLE `tbldetalleproducto` (
-  `DetProID` int(11) NOT NULL,
-  `DetProCantidad` int(11) NOT NULL,
-  `DetProFechaRegistro` date NOT NULL,
-  `TblProveedores_ProveedorID` int(11) DEFAULT NULL,
-  `TblProductos_ProductoID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tbldetalleproducto`
---
-
-INSERT INTO `tbldetalleproducto` (`DetProID`, `DetProCantidad`, `DetProFechaRegistro`, `TblProveedores_ProveedorID`, `TblProductos_ProductoID`) VALUES
-(6, 12, '2022-02-08', 6, 6),
-(7, 10, '2022-01-10', 6, 6),
-(9, 1, '2022-02-02', 7, 17),
-(13, 1, '2022-02-08', 7, 21),
-(14, 4, '2022-02-08', 7, 22),
-(15, 10, '2022-02-08', 3, 23),
-(16, 2, '2022-02-08', 6, 24);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblempleados`
---
-
-CREATE TABLE `tblempleados` (
-  `EmpleadoID` int(11) NOT NULL,
-  `EmpIdentificacion` int(11) NOT NULL,
-  `EmpNombre` varchar(50) NOT NULL,
-  `EmpApellido` varchar(50) NOT NULL,
-  `TblGeneros_GeneroID` int(11) DEFAULT NULL,
-  `TblCargos_CargoID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblempleados`
---
-
-INSERT INTO `tblempleados` (`EmpleadoID`, `EmpIdentificacion`, `EmpNombre`, `EmpApellido`, `TblGeneros_GeneroID`, `TblCargos_CargoID`) VALUES
-(9, 123, 'GUILLERMO', 'LUNA', 2, 2),
-(10, 111, 'FABIAN', 'BELTRÁN', 2, 2);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblgeneros`
---
-
-CREATE TABLE `tblgeneros` (
-  `GeneroID` int(11) NOT NULL,
-  `GenNombre` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblgeneros`
---
-
-INSERT INTO `tblgeneros` (`GeneroID`, `GenNombre`) VALUES
-(1, 'Femenino'),
-(2, 'Masculino'),
-(3, 'Otro');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblproductos`
---
-
-CREATE TABLE `tblproductos` (
-  `ProductoID` int(11) NOT NULL,
-  `ProCodigo` varchar(20) NOT NULL,
-  `ProNombre` varchar(20) NOT NULL,
-  `ProSerial` varchar(50) DEFAULT NULL,
-  `ProEstado` varchar(5) NOT NULL,
-  `TblCategorias_CategoriaID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblproductos`
---
-
-INSERT INTO `tblproductos` (`ProductoID`, `ProCodigo`, `ProNombre`, `ProSerial`, `ProEstado`, `TblCategorias_CategoriaID`) VALUES
-(6, '001', 'Mouse Gamer', 'asd', 'Nuevo', 2),
-(7, '002', 'Teclado inalámbrico', 'xar2458', 'Nuevo', 4),
-(8, '003', 'Computador DELL', '15487', 'Nuevo', 1),
-(9, '004', 'Mouse Razer', 'AXASDA', 'Nuevo', 2),
-(10, '005', 'Mouse Genius', 'XARA', 'Usado', 2),
-(11, '006', 'Teclado Logitech', '123ASDAS', 'Nuevo', 3),
-(12, '007', 'Monitor 24 in', 'as', 'Nuevo', 2),
-(14, '008', 'Altavoces', 'asd', 'Nuevo', 3),
-(15, '009', 'Diademas', 'aweas', 'Nuevo', 2),
-(16, '010', 'Portatil Asus', 'asd', 'Nuevo', 2),
-(17, '011', 'Mouse Genérico', 'asd', 'Nuevo', 2),
-(21, '012', 'Mouse Inalámbrico', 'asd', 'Usado', 2),
-(22, '013', 'Computador HP', 'xar', 'Usado', 3),
-(23, '014', 'Nokia 1100', 'XAR455878QWE', 'Usado', 3),
-(24, '015', 'Movil', 'xaras8484', 'Usado', 4);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblproveedores`
---
-
-CREATE TABLE `tblproveedores` (
-  `ProveedorID` int(11) NOT NULL,
-  `ProNIT` varchar(20) NOT NULL,
-  `ProNombre` varchar(80) NOT NULL,
-  `ProTelefono` varchar(20) DEFAULT NULL,
-  `ProDireccion` varchar(150) DEFAULT NULL,
-  `ProEmail` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblproveedores`
---
-
-INSERT INTO `tblproveedores` (`ProveedorID`, `ProNIT`, `ProNombre`, `ProTelefono`, `ProDireccion`, `ProEmail`) VALUES
-(3, '88282', 'COMFAMILIAR DE NARIÑO', '72020', 'CENTRO MARIDIAZ', 'comfamiliar@gmail.com'),
-(4, '8003154548', 'CASINO CARNAVAL PASTO', '72020', 'CENTRO UNICENTRO', 'casinocarnavalpasto@gmail.com'),
-(5, '123', 'CATANA', '75154', 'CENTRO', 'hola@gmail.com'),
-(6, '124', 'COMPENSAR', '12132', 'asda', 'casasd'),
-(7, '1515', 'PELUQUERIA', '123', 'ASD', 'ASD');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblroles`
---
-
-CREATE TABLE `tblroles` (
-  `IdRol` int(11) NOT NULL,
-  `RolNombre` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblroles`
---
-
-INSERT INTO `tblroles` (`IdRol`, `RolNombre`) VALUES
-(3, 'Administrador'),
-(4, 'Auxiliar');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblusuarios`
---
-
-CREATE TABLE `tblusuarios` (
-  `UsuarioID` int(11) NOT NULL,
-  `UsuNombre` varchar(20) NOT NULL,
-  `UsuClave` varchar(255) NOT NULL,
-  `TblRoles_IdRol` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `tblusuarios`
---
-
-INSERT INTO `tblusuarios` (`UsuarioID`, `UsuNombre`, `UsuClave`, `TblRoles_IdRol`) VALUES
-(4, 'auxcomp', 'XNniVhA+JIg=', 4),
-(5, 'admincomp', 'NAmh3z1X//8=', 3);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tblacta`
---
-ALTER TABLE `tblacta`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `codigo` (`codigo`),
-  ADD KEY `proveedorID` (`proveedorID`),
-  ADD KEY `empleadoID` (`empleadoID`);
-
---
--- Indices de la tabla `tblcargos`
---
-ALTER TABLE `tblcargos`
-  ADD PRIMARY KEY (`CargoID`);
-
---
--- Indices de la tabla `tblcategorias`
---
-ALTER TABLE `tblcategorias`
-  ADD PRIMARY KEY (`CategoriaID`);
-
---
--- Indices de la tabla `tbldetalleproducto`
---
-ALTER TABLE `tbldetalleproducto`
-  ADD PRIMARY KEY (`DetProID`),
-  ADD KEY `tbldetalleproducto_ibfk_1` (`TblProductos_ProductoID`),
-  ADD KEY `tbldetalleproducto_ibfk_2` (`TblProveedores_ProveedorID`);
-
---
--- Indices de la tabla `tblempleados`
---
-ALTER TABLE `tblempleados`
-  ADD PRIMARY KEY (`EmpleadoID`),
-  ADD UNIQUE KEY `EmpIdentificacion` (`EmpIdentificacion`),
-  ADD UNIQUE KEY `EmpIdentificacion_2` (`EmpIdentificacion`),
-  ADD KEY `TblCargos_CargoID` (`TblCargos_CargoID`),
-  ADD KEY `TblGeneros_GeneroID` (`TblGeneros_GeneroID`);
-
---
--- Indices de la tabla `tblgeneros`
---
-ALTER TABLE `tblgeneros`
-  ADD PRIMARY KEY (`GeneroID`);
-
---
--- Indices de la tabla `tblproductos`
---
-ALTER TABLE `tblproductos`
-  ADD PRIMARY KEY (`ProductoID`),
-  ADD UNIQUE KEY `ProCodigo` (`ProCodigo`),
-  ADD KEY `TblCategorias_CategoriaID` (`TblCategorias_CategoriaID`);
-
---
--- Indices de la tabla `tblproveedores`
---
-ALTER TABLE `tblproveedores`
-  ADD PRIMARY KEY (`ProveedorID`),
-  ADD UNIQUE KEY `ProNIT` (`ProNIT`);
-
---
--- Indices de la tabla `tblroles`
---
-ALTER TABLE `tblroles`
-  ADD PRIMARY KEY (`IdRol`);
-
---
--- Indices de la tabla `tblusuarios`
---
-ALTER TABLE `tblusuarios`
-  ADD PRIMARY KEY (`UsuarioID`),
-  ADD UNIQUE KEY `UsuNombre` (`UsuNombre`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `tblcargos`
---
-ALTER TABLE `tblcargos`
-  MODIFY `CargoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `tblcategorias`
---
-ALTER TABLE `tblcategorias`
-  MODIFY `CategoriaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `tbldetalleproducto`
---
-ALTER TABLE `tbldetalleproducto`
-  MODIFY `DetProID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT de la tabla `tblempleados`
---
-ALTER TABLE `tblempleados`
-  MODIFY `EmpleadoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `tblgeneros`
---
-ALTER TABLE `tblgeneros`
-  MODIFY `GeneroID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `tblproductos`
---
-ALTER TABLE `tblproductos`
-  MODIFY `ProductoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT de la tabla `tblproveedores`
---
-ALTER TABLE `tblproveedores`
-  MODIFY `ProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `tblroles`
---
-ALTER TABLE `tblroles`
-  MODIFY `IdRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `tblusuarios`
---
-ALTER TABLE `tblusuarios`
-  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `tblacta`
---
-ALTER TABLE `tblacta`
-  ADD CONSTRAINT `tblacta_ibfk_1` FOREIGN KEY (`proveedorID`) REFERENCES `tblproveedores` (`ProveedorID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tblacta_ibfk_2` FOREIGN KEY (`empleadoID`) REFERENCES `tblempleados` (`EmpleadoID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tbldetalleproducto`
---
-ALTER TABLE `tbldetalleproducto`
-  ADD CONSTRAINT `tbldetalleproducto_ibfk_1` FOREIGN KEY (`TblProductos_ProductoID`) REFERENCES `tblproductos` (`ProductoID`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbldetalleproducto_ibfk_2` FOREIGN KEY (`TblProveedores_ProveedorID`) REFERENCES `tblproveedores` (`ProveedorID`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tblempleados`
---
-ALTER TABLE `tblempleados`
-  ADD CONSTRAINT `tblempleados_ibfk_1` FOREIGN KEY (`TblCargos_CargoID`) REFERENCES `tblcargos` (`CargoID`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `tblempleados_ibfk_2` FOREIGN KEY (`TblGeneros_GeneroID`) REFERENCES `tblgeneros` (`GeneroID`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tblproductos`
---
-ALTER TABLE `tblproductos`
-  ADD CONSTRAINT `tblproductos_ibfk_1` FOREIGN KEY (`TblCategorias_CategoriaID`) REFERENCES `tblcategorias` (`CategoriaID`) ON DELETE SET NULL ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -32,7 +32,36 @@ public class PnlEmpleados extends javax.swing.JPanel {
             "ID", "Identificacion", "Nombre", "Apellido", "GeneroID", "Genero", "CargoID", "Cargo"
         };
 
-        if(listaEmpleados.size() > 0) {
+        if(!listaEmpleados.isEmpty()) {
+            for (int i = 0; i < listaEmpleados.size(); i++) {
+                datos[i][0] = Integer.toString(listaEmpleados.get(i).getId());
+                datos[i][1] = Integer.toString(listaEmpleados.get(i).getIdentificacion());
+                datos[i][2] = listaEmpleados.get(i).getNombre();
+                datos[i][3] = listaEmpleados.get(i).getApellido();
+                datos[i][4] = Integer.toString(listaEmpleados.get(i).getGenero().getId());
+                datos[i][5] = listaEmpleados.get(i).getGenero().getName();
+                datos[i][6] = Integer.toString(listaEmpleados.get(i).getCargo().getId());
+                datos[i][7] = listaEmpleados.get(i).getCargo().getName();
+            }
+            
+            DefaultTableModel model = new DefaultTableModel(datos, columns);
+            int[] columnSize = {10, 50, 50, 50, 50, 50, 50, 50};
+            for(int x=0; x<columnSize.length;x++) {
+                tblEmpleados.getColumnModel().getColumn(x).setPreferredWidth(columnSize[x]);
+            }
+            tblEmpleados.setRowHeight(30);
+            tblEmpleados.setModel(model);
+        }               
+    }
+
+    public void fillDataTableOne(int identificacion) {
+        listaEmpleados = controllerEmpleado.readOne(identificacion);
+        String datos[][] = new String[listaEmpleados.size()][8];
+        String[] columns = {
+            "ID", "Identificacion", "Nombre", "Apellido", "GeneroID", "Genero", "CargoID", "Cargo"
+        };
+
+        if(!listaEmpleados.isEmpty()) {
             for (int i = 0; i < listaEmpleados.size(); i++) {
                 datos[i][0] = Integer.toString(listaEmpleados.get(i).getId());
                 datos[i][1] = Integer.toString(listaEmpleados.get(i).getIdentificacion());
@@ -67,10 +96,8 @@ public class PnlEmpleados extends javax.swing.JPanel {
             empleado = controllerEmpleado.buscarID(Integer.parseInt(identificacion));
             MySerializable serial = new MySerializable();
             serial.writeObj(empleado, Constants.PATH_SERIAL_EMPLEADO);
-            if(empleado == null) {
-                System.out.println(Constants.NOT_FOUND);
-            } else {
-                System.out.println("Mostrando empleado");
+            if(empleado != null) {
+                fillDataTableOne(Integer.parseInt(identificacion));
             }
         } else Messages.msgError(Constants.ONLY_NUMBERS);
     }
@@ -94,7 +121,9 @@ public class PnlEmpleados extends javax.swing.JPanel {
         txtBuscar = new javax.swing.JTextField();
         btnNuevoEmpleado = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        btnVerTodos = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -118,7 +147,7 @@ public class PnlEmpleados extends javax.swing.JPanel {
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 50));
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +198,7 @@ public class PnlEmpleados extends javax.swing.JPanel {
         txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 250, 41));
 
-        btnNuevoEmpleado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnNuevoEmpleado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNuevoEmpleado.setText("Nuevo Empleado");
         btnNuevoEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +210,15 @@ public class PnlEmpleados extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Buscar por identificación:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+
+        btnVerTodos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnVerTodos.setText("Ver Todos");
+        btnVerTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerTodosActionPerformed(evt);
+            }
+        });
+        add(btnVerTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEmpleadoActionPerformed
@@ -221,10 +259,15 @@ public class PnlEmpleados extends javax.swing.JPanel {
         }               
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
+    private void btnVerTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTodosActionPerformed
+        fillDataTable();
+    }//GEN-LAST:event_btnVerTodosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoEmpleado;
+    private javax.swing.JButton btnVerTodos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

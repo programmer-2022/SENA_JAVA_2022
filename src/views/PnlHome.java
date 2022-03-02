@@ -15,7 +15,7 @@ public class PnlHome extends javax.swing.JPanel {
      * Creates new form PnlHome
      */
     public PnlHome() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -30,7 +30,9 @@ public class PnlHome extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         label3 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(48, 51, 107));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -49,14 +51,19 @@ public class PnlHome extends javax.swing.JPanel {
 
         label3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label3.setForeground(new java.awt.Color(204, 204, 204));
-        label3.setText("Home");
+        label3.setText("Inicio");
         jPanel2.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 50));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/inicio.PNG"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 140, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private java.awt.Label label1;
     private java.awt.Label label3;

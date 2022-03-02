@@ -59,6 +59,11 @@ public class PnlProductos extends javax.swing.JPanel {
         txtCategoriaID.setEnabled(false);
         cargarComboCategorias();
         cargarComboProveedores();
+        txtCategoriaID.setVisible(false);
+        txtEstadoID.setVisible(false);
+        txtProveedorID.setVisible(false);
+        txtDetalleID.setVisible(false);
+        txtProductoID.setVisible(false);    
     }
     
     private ProductoVO getProductObj() {
@@ -116,8 +121,8 @@ public class PnlProductos extends javax.swing.JPanel {
     
     private boolean isEmpty() {
         return (getCode().equals("") || getNombre().equals("") || getSerial().equals("") 
-                || getStatus().equals("") || getCategoria().equals("") || getCantidad().equals("")
-                || getProveedor().equals("") || getFecha().equals(""));
+            || getStatus().equals("") || getCategoria().equals("") || getCantidad().equals("")
+            || getProveedor().equals("") || getFecha().equals(""));
     }
     
     private void clearFields() {
@@ -319,8 +324,6 @@ public class PnlProductos extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnNuevaCategoria = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -330,7 +333,9 @@ public class PnlProductos extends javax.swing.JPanel {
         txtProveedorID = new javax.swing.JTextField();
         txtDetalleID = new javax.swing.JTextField();
         txtProductoID = new javax.swing.JTextField();
+        btnNuevo = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -350,7 +355,6 @@ public class PnlProductos extends javax.swing.JPanel {
         label3.setText("Productos");
         jPanel2.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        txtCodigo.setEditable(false);
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -431,12 +435,6 @@ public class PnlProductos extends javax.swing.JPanel {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar producto");
-
-        btnNuevaCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNuevaCategoria.setText("Nueva Categoría");
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Cantidad");
 
@@ -460,6 +458,14 @@ public class PnlProductos extends javax.swing.JPanel {
         txtDetalleID.setEditable(false);
 
         txtProductoID.setEditable(false);
+
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -510,17 +516,15 @@ public class PnlProductos extends javax.swing.JPanel {
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(txtSerial))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(394, 394, 394)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNuevaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cbxProveedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -528,11 +532,10 @@ public class PnlProductos extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -589,12 +592,15 @@ public class PnlProductos extends javax.swing.JPanel {
         modal.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        clearFields();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnNuevaCategoria;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxCategoria;
     private javax.swing.JComboBox<String> cbxEstado;

@@ -1,6 +1,7 @@
 package views;
 
 import controllers.UserController;
+import java.awt.event.KeyEvent;
 import models.vo.Permissions;
 import models.vo.UsuarioVO;
 import utils.Constants;
@@ -127,6 +128,11 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 145, -1, -1));
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 173, 400, 40));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
@@ -149,6 +155,11 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 392, 400, 40));
 
         txtContrasena.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 280, 400, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 0, -1, -1));
@@ -163,6 +174,14 @@ public class Login extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtUsuario.requestFocus();
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) login();
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) login();
+    }//GEN-LAST:event_txtContrasenaKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

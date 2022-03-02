@@ -103,18 +103,16 @@ public class PnlUsuarios extends javax.swing.JPanel {
         label3 = new java.awt.Label();
         jLabel4 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtBuscar = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtPassConfirm = new javax.swing.JPasswordField();
         txtPassword = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         cbxRoles = new javax.swing.JComboBox<>();
-        btnBuscar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         txtRolID = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1300, 750));
         setMinimumSize(new java.awt.Dimension(1300, 750));
         setPreferredSize(new java.awt.Dimension(1300, 750));
@@ -139,13 +137,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        txtBuscar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Confirmar contraseña");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Buscar por nombre");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Nombre de Usuario");
@@ -160,15 +153,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
             }
         });
 
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,32 +176,17 @@ public class PnlUsuarios extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbxRoles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                    .addComponent(txtPassConfirm, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)))
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbxRoles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                        .addComponent(txtPassConfirm, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(txtRolID, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +204,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 .addComponent(cbxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(140, 140, 140)
                 .addComponent(txtRolID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -244,10 +214,6 @@ public class PnlUsuarios extends javax.swing.JPanel {
         txtRolID.setText(listaRoles.get(cbxRoles.getSelectedItem().toString()).toString());
     }//GEN-LAST:event_cbxRolesActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         readFields();
         create();
@@ -255,19 +221,15 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> cbxCargo;
     private javax.swing.JComboBox<String> cbxRoles;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private java.awt.Label label1;
     private java.awt.Label label3;
-    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassConfirm;
     private javax.swing.JPasswordField txtPassword;

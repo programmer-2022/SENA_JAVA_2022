@@ -216,5 +216,39 @@ public class EmpleadoDAO implements ICrud<EmpleadoVO> {
         }
         return empleado;
     }
+
+    public LinkedList<EmpleadoVO> readOne(int identificacion) {
+        xcon = MySQLConnection.getInstance();
+        LinkedList<EmpleadoVO> listaEmpleados = new LinkedList<>();
+                
+        try {
+            PreparedStatement ps = xcon.getConnection().prepareCall("{call sp_buscar_empleado_id(?)}");
+            ps.setInt(1, identificacion);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                EmpleadoVO empleado = new EmpleadoVO();
+                CargoVO cargo = new CargoVO();
+                GeneroVO genero = new GeneroVO();
+                empleado.setId(rs.getInt(Constants.EMP_ID));
+                empleado.setIdentificacion(rs.getInt(Constants.EMP_IDENTIFICACION));
+                empleado.setNombre(rs.getString(Constants.EMP_NOMBRE));
+                empleado.setApellido(rs.getString(Constants.EMP_APELLIDO));
+                genero.setId(rs.getInt(Constants.GENERO_ID));
+                genero.setName(rs.getString(Constants.GENERO_NOMBRE));
+                cargo.setId(rs.getInt(Constants.CARGO_ID));
+                cargo.setName(rs.getString(Constants.CARGO_NOMBRE));
+                empleado.setGenero(genero);
+                empleado.setCargo(cargo);
+                listaEmpleados.add(empleado);
+            }
+        } catch (SQLException e) {
+            Messages.msgError(Constants.ERROR_SERVER);
+        } catch (Exception e) {
+            Messages.msgError(Constants.ERROR_SYSTEM);            
+        } finally {
+            xcon.close_connection();
+        }
+        return listaEmpleados;
+    }
        
 }

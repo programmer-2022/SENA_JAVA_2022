@@ -24,6 +24,10 @@ public class ControllerEmpleado implements ICrud<EmpleadoVO>{
         return dao.readAll(); 
     }
 
+    public LinkedList<EmpleadoVO> readOne(int identificacion) {
+        return dao.readOne(identificacion); 
+    }
+
     @Override
     public boolean update(EmpleadoVO empleado) {
         return dao.update(empleado);
